@@ -1,0 +1,13 @@
+{
+  "name": "pelican-island-ride",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "原创 Canvas 鹈鹕骑行冒险",
+  "license": "MIT",
+  "scripts": {
+    "dev": "python3 -m http.server 8793 --bind 127.0.0.1 --directory dist",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check dist/game.js && node --check dist/renderer.js && node --check dist/audio.js && node --check dist/routes.js"
+  }
+}

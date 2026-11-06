@@ -1,0 +1,10 @@
+.DS_Store
+*.tar.gz
+*.tar
+node_modules/
+.sites-runtime/
+.env
+.env.*
+!.env.example
+*.log
+coverage/

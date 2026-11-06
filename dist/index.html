@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f5f1df"><meta name="description" content="骑上自行车，和鹈鹕一起穿越海岸、雨林与星夜。跳跃、滑翔、收集鱼干，开启一场小小的岛屿冒险。">
+  <title>鹈鹕岛 · 骑向海风</title><link rel="icon" type="image/svg+xml" href="icon.svg"><link rel="stylesheet" href="style.css">
+</head>
+<body data-screen="menu" data-biome="0">
+<svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-5 5H3v6h3l5 5V4Zm4 4q4 4 0 8m3-11q7 7 0 14"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="m14 7 3 3 4-4a7 7 0 0 1-9 9l-7 7-3-3 7-7a7 7 0 0 1 9-9l-4 4Z"/></symbol>
+  <symbol id="i-full" viewBox="0 0 24 24"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/></symbol>
+  <symbol id="i-fish" viewBox="0 0 24 24"><path d="M4 12C10 3 18 5 21 12c-3 7-11 9-17 0Zm0 0L1 7v10l3-5Z"/><circle cx="16" cy="11" r=".6"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-lightning" viewBox="0 0 24 24"><path d="m14 2-9 12h7l-2 8 9-12h-7l2-8Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 9 4v7q-3 7-9 9-6-2-9-9V6l9-4Zm-5 10 3 3 7-7"/></symbol>
+  <symbol id="i-magnet" viewBox="0 0 24 24"><path d="M4 4v10a8 8 0 0 0 16 0V4h-5v10a3 3 0 0 1-6 0V4H4Zm0 5h5m6 0h5"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16M8 4v6m8 4v6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+</defs></svg>
+<canvas id="gameCanvas" aria-label="鹈鹕骑行游戏画面">你的浏览器需要支持 Canvas 才能游玩。</canvas>
+
+<main id="menu" class="menu">
+  <header class="header">
+    <a class="brand" href="./" aria-label="鹈鹕岛首页"><img src="icon.svg" alt="" width="44" height="44"><span><strong>鹈鹕岛</strong><small>PELICAN ISLAND</small></span></a>
+    <div class="header-note"><span class="live-dot"></span> 岛屿骑行俱乐部 <span class="small-separator">/</span> EST. 2026</div>
+    <nav class="toolbar" aria-label="游戏工具">
+      <button class="tool workshop-trigger" data-action="workshop"><svg><use href="#i-tool"/></svg><span>骑行工坊</span></button>
+      <button class="tool icon-only" data-action="settings" aria-label="音乐与画面设置"><svg><use href="#i-settings"/></svg></button>
+      <button class="tool icon-only fullscreen" data-action="fullscreen" aria-label="全屏游玩"><svg><use href="#i-full"/></svg></button>
+    </nav>
+  </header>
+  <section class="hero" aria-labelledby="game-title">
+    <p class="eyebrow"><span></span> A LITTLE RIDE. A BIG ADVENTURE.</p>
+    <h1 id="game-title">鹈鹕，<br><em>出发！</em><span class="title-spark">✳</span></h1>
+    <p class="hero-copy">把烦恼留在岸边。<br>踩着海风，去收集一整座岛的好心情。</p>
+    <div class="mode-switch" role="group" aria-label="游戏模式">
+      <button class="active" data-mode="adventure" aria-pressed="true">岛屿冒险 <small>1200 m</small></button>
+      <button data-mode="endless" aria-pressed="false">无尽漫游 <small>∞</small></button>
+    </div>
+    <div class="hero-actions"><button class="primary start-button" data-action="start">迎着海风，出发<svg><use href="#i-arrow"/></svg></button><button class="text-button" data-action="help"><span class="question-mark">?</span> 怎么玩</button></div>
+    <p id="routeDescription" class="hero-footnote route-summary">顺着海风加速，沿着缓坡练习跳跃。</p>
+  </section>
+  <div class="island-stamp" aria-hidden="true"><span>GOOD DAYS</span><strong>RIDE<br>&amp; SHINE</strong><span>ON TWO WHEELS</span></div>
+  <section class="destinations" aria-label="选择骑行路线">
+    <div class="section-caption"><span>下一站，哪里？</span><small>CHOOSE YOUR LITTLE ESCAPE</small></div>
+    <div class="route-grid">
+      <button class="route active" data-biome="0" aria-pressed="true"><span class="route-number">01</span><span class="route-text"><strong>海盐公路<span class="route-record" data-route-record="0" aria-label="最佳星级"></span></strong><small>顺风加速 · 海岸缓坡</small></span><svg class="route-art" viewBox="0 0 110 65" aria-hidden="true"><circle cx="80" cy="18" r="12" fill="#efbc5b"/><path d="M0 42Q26 27 53 43t57-1v23H0Z" fill="#a6cec0"/><path d="M0 52q27-12 55 0t55-1" stroke="#367c76" fill="none" stroke-width="3"/><path d="M28 48V25l12-9 12 9v23" fill="#f8f0db"/><path d="m25 26 15-12 15 12" fill="none" stroke="#cf7755" stroke-width="5"/></svg><span class="route-arrow">↗</span></button>
+      <button class="route" data-biome="1" aria-pressed="false"><span class="route-number">02</span><span class="route-text"><strong>翡翠雨林<span class="route-record" data-route-record="1" aria-label="最佳星级"></span></strong><small>林间起伏 · 跨越原木</small></span><svg class="route-art" viewBox="0 0 110 65" aria-hidden="true"><path d="M0 65V45Q40 30 110 45v20" fill="#b8c9a1"/><path d="M32 58V18M69 60V8M92 62V30" stroke="#5d7d61" stroke-width="3"/><path d="M32 38Q3 34 14 17q20-4 18 21Zm0-7Q57 29 50 10q-21-2-18 21ZM69 33Q43 29 47 11q25-2 22 22Zm0-10Q97 24 91 5q-22-2-22 18ZM92 48q-20-2-16-16 20 1 16 16Z" fill="#4f947a"/></svg><span class="route-arrow">↗</span></button>
+      <button class="route" data-biome="2" aria-pressed="false"><span class="route-number">03</span><span class="route-text"><strong>星夜灯塔<span class="route-record" data-route-record="2" aria-label="最佳星级"></span></strong><small>夜航寻珠 · 穿环挑战</small></span><svg class="route-art" viewBox="0 0 110 65" aria-hidden="true"><circle cx="27" cy="20" r="13" fill="#e4bb69"/><circle cx="33" cy="15" r="12" fill="#e6e8da"/><path d="M0 65q40-30 110-5v5Z" fill="#9aa7a6"/><path d="m65 57 4-35h14l4 35" fill="#f8eed8"/><path d="m68 33 16 0 1 8H67" fill="#c87963"/><path d="M66 21h20l-10-9Z" fill="#3f6b70"/><path d="M76 5v4M45 37v5M43 39h4M95 17v6M92 20h6" stroke="#cfad64" stroke-width="1.5"/></svg><span class="route-arrow">↗</span></button>
+    </div>
+  </section>
+  <footer class="menu-footer"><span class="keyboard-hint"><kbd>空格</kbd> 跳跃 / 长按滑翔 <span class="footer-dot">·</span> <kbd>Shift</kbd> 冲刺</span><span class="mobile-hint">轻触跳跃，长按滑翔 · 支持横屏</span><span class="personal-best">个人最佳 <b id="bestDistance">0</b> m <span class="footer-dot">/</span> <svg><use href="#i-fish"/></svg><b id="wallet">0</b></span></footer>
+</main>
+
+<section id="hud" class="hud" aria-label="骑行状态" hidden>
+  <div class="hud-top"><div class="ride-title"><img src="icon.svg" alt="" width="38" height="38"><span><small>正在骑行</small><b id="hudBiome">海盐公路</b></span></div><div class="ride-progress"><div><b id="hudDistance">0 m</b><span id="hudGoal">1200 m</span></div><div class="progress-track"><div id="hudProgress"></div></div></div><div class="ride-resources"><span class="fish-count"><svg><use href="#i-fish"/></svg><b id="hudFish">0</b></span><span class="pearl-count">◈ <b id="hudPearls">0</b></span><button class="tool icon-only" data-action="pause" aria-label="暂停游戏"><svg><use href="#i-pause"/></svg></button></div></div>
+  <div class="hud-secondary"><span id="hudHearts" class="hearts" aria-label="剩余生命">♥♥♥</span><span id="hudMission" class="mission">收集鱼干 0/25</span><span id="hudSection" class="route-section">顺风海岸</span><span id="hudCombo" class="combo">保持节奏</span></div>
+  <div class="ride-bottom"><div class="energy-panel"><div><span><svg><use href="#i-lightning"/></svg> 冲刺能量</span><b id="hudSpeed">0 km/h</b></div><div class="energy-track" role="progressbar" aria-label="冲刺能量" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><div id="hudEnergy"></div></div><small><kbd>Shift</kbd> 冲刺 <span> · </span> <kbd>↓</kbd> 刹车</small></div><span id="hudBuffs" class="buffs"></span><span class="ride-tips"><kbd>空格</kbd> 二段跳 · 长按滑翔</span></div>
+</section>
+<div id="touchControls" class="touch-controls" aria-label="触屏操作" hidden><button data-control="brake" class="touch-brake" aria-label="按住刹车"><span>↓</span><small>刹车</small></button><div><button data-control="boost" class="touch-boost" aria-label="按住冲刺"><svg><use href="#i-lightning"/></svg><small>冲刺</small></button><button data-control="jump" class="touch-jump" aria-label="跳跃，长按滑翔"><span>↑</span><small>跳跃 / 滑翔</small></button></div></div>
+
+<section id="pauseOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="pauseTitle" hidden><div class="modal compact"><p class="eyebrow">TAKE A LITTLE BREATHER</p><div class="pause-art" aria-hidden="true">Ⅱ</div><h2 id="pauseTitle">海风，等你一会儿。</h2><p class="modal-copy">歇歇脚，下一段风景还在前面。</p><button class="primary wide" data-action="resume">继续骑行<svg><use href="#i-arrow"/></svg></button><div class="modal-actions"><button class="secondary" data-action="restart">重新出发</button><button class="secondary" data-action="home">返回岛屿</button></div><div class="pause-tools"><button class="text-button" data-action="help">操作说明</button><button class="text-button" data-action="settings"><svg><use href="#i-sound"/></svg>音乐与画面</button></div></div></section>
+<section id="resultOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="resultTitle" hidden><div class="modal result-card"><p class="eyebrow">POSTCARD FROM YOUR ADVENTURE</p><div id="resultStars" class="result-stars">★★★</div><h2 id="resultTitle">海风，为你喝彩！</h2><p id="resultSubtitle" class="modal-copy"></p><div class="result-stats"><div><strong id="resultDistance">0</strong><small>骑行距离 / m</small></div><div><strong id="resultFish">0</strong><small>收集收益 / 鱼干</small></div><div><strong id="resultBonus">+0</strong><small>任务与旅途奖励</small></div></div><p id="resultDetails" class="result-details"></p><p id="resultBest" class="result-best"></p><button class="primary wide" data-action="restart">再骑一程<svg><use href="#i-arrow"/></svg></button><div class="modal-actions"><button class="secondary" data-action="workshop">去工坊升级</button><button class="secondary" data-action="home">选择新风景</button></div><p class="save-note">收获已自动保存在当前浏览器</p></div></section>
+
+<section id="workshopOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="workshopTitle" hidden><div class="modal workshop"><button class="close-button" data-action="close-modal" aria-label="关闭骑行工坊"><svg><use href="#i-close"/></svg></button><p class="eyebrow">THE LITTLE BIKE WORKSHOP</p><h2 id="workshopTitle">为下一程，加点料。</h2><div class="shop-intro"><p>把路上的收获，变成骑行的小小超能力。</p><span class="wallet-badge"><svg><use href="#i-fish"/></svg><b data-wallet>0</b> 鱼干</span></div><div class="upgrade-grid"><article class="upgrade-card"><div class="upgrade-icon"><svg><use href="#i-lightning"/></svg></div><small id="upgradeSpeed">Lv. 0 / 3</small><h3>海风传动</h3><p>提升基础骑行速度，<br>让每次冲刺更尽兴。</p><button class="secondary" data-upgrade="speed"><span id="priceSpeed">60 鱼干</span><span>升级 ↗</span></button></article><article class="upgrade-card"><div class="upgrade-icon"><svg><use href="#i-magnet"/></svg></div><small id="upgradeMagnet">Lv. 0 / 3</small><h3>好运磁铁</h3><p>扩大日常吸附范围，<br>延长磁铁道具时间。</p><button class="secondary" data-upgrade="magnet"><span id="priceMagnet">60 鱼干</span><span>升级 ↗</span></button></article><article class="upgrade-card"><div class="upgrade-icon"><svg><use href="#i-shield"/></svg></div><small id="upgradeShield">Lv. 0 / 3</small><h3>安心护盾</h3><p>出发时自带护盾，<br>每级抵挡一次碰撞。</p><button class="secondary" data-upgrade="shield"><span id="priceShield">60 鱼干</span><span>升级 ↗</span></button></article></div><p id="shopStatus" class="save-note" role="status">完成骑行即可积攒鱼干 · 升级会在下次出发时生效</p></div></section>
+<section id="helpOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="helpTitle" hidden><div class="modal help"><button class="close-button" data-action="close-modal" aria-label="关闭操作说明"><svg><use href="#i-close"/></svg></button><p class="eyebrow">A FIELD GUIDE TO GOOD TIMES</p><h2 id="helpTitle">两只轮子，无限好奇。</h2><p class="modal-copy">鹈鹕会自动向前骑。你只需掌握跳跃的节奏。</p><div class="help-grid"><article><span class="help-number">01</span><h3>跃过小麻烦</h3><p><kbd>空格</kbd> / <kbd>↑</kbd> 跳跃，再按一次可二段跳。长按跳跃键，在下降时张翼滑翔。</p></article><article><span class="help-number">02</span><h3>追上那阵风</h3><p><kbd>Shift</kbd> / <kbd>→</kbd> 消耗能量冲刺，<kbd>↓</kbd> 减速。能量会自动恢复，鱼干也能补充能量。</p></article><article><span class="help-number">03</span><h3>好东西，别错过</h3><p>连续收集鱼干提升奖励倍率，最高 4 倍。珍珠价值 5 鱼干；磁铁自动吸附，护盾抵挡一次碰撞。</p></article><article><span class="help-number">04</span><h3>下一程，更精彩</h3><p>跳板与气流助你腾空。起跳越过障碍并平稳落地，可获完美落地奖励 +3 鱼干。每 400 米自动恢复 1 点生命与 35 能量；跳跃穿过金环，额外获得 10 鱼干。<kbd>P</kbd> / <kbd>Esc</kbd> 暂停。</p></article></div><div class="help-note">岛屿冒险：完成 1200 m，争取三星；最佳星级保存在路线卡片上。<br>无尽漫游：每 900 m 更换风景，挑战个人纪录。<br>手机玩家：使用屏幕下方按钮，长按「跳跃」滑翔。</div><button class="primary wide" data-action="close-modal">明白了，出发去看海<svg><use href="#i-arrow"/></svg></button></div></section>
+<section id="settingsOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden><div class="modal settings-card"><button class="close-button" data-action="close-modal" aria-label="关闭音乐与画面设置"><svg><use href="#i-close"/></svg></button><p class="eyebrow">TUNE YOUR LITTLE ESCAPE</p><h2 id="settingsTitle">调一调，舒服出发。</h2><p class="modal-copy">海风的音量，交给你来决定。</p><div class="audio-setting"><label for="musicVolume"><span>背景音乐<small>海岸、雨林与星夜的原创配乐</small></span><output id="musicValue" for="musicVolume">50%</output></label><input id="musicVolume" type="range" min="0" max="100" step="5" value="50" aria-label="背景音乐音量"></div><div class="audio-setting"><label for="sfxVolume"><span>操作音效<small>跳跃、收集与沿途的小惊喜</small></span><output id="sfxValue" for="sfxVolume">70%</output></label><input id="sfxVolume" type="range" min="0" max="100" step="5" value="70" aria-label="操作音效音量"></div><div class="effects-setting"><label for="reducedEffects"><span>轻量画面<small>减少粒子、光晕与镜头震动</small></span><input id="reducedEffects" type="checkbox"></label></div><div class="sound-footer"><button class="secondary" data-action="mute" aria-label="关闭声音" aria-pressed="false"><svg><use href="#i-sound"/></svg><span data-sound-label>声音开</span></button><p id="audioStatus" role="status">音乐默认开启，首次操作后自动播放。</p></div><p class="save-note">设置自动保存在当前浏览器。</p></div></section>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script type="module" src="game.js"></script>
+</body></html>
