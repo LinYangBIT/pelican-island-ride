@@ -2,7 +2,7 @@
 
 精致的 Canvas 2D 自行车冒险小游戏。无运行时依赖，所有角色、风景、粒子和音乐均由代码生成。
 
-[进入游戏](https://pelican-island-ride-linyang.yanglinchasel.chatgpt.site)（此托管实例保持私人访问，需要拥有者的 ChatGPT 账户；源码可独立运行。）
+[进入游戏](https://pelican-island-ride-linyang.yanglinchasel.chatgpt.site)（托管入口沿用当前站点的访问设置；源码可独立运行。）
 
 [GitHub 源码仓库](https://github.com/LinYangBIT/pelican-island-ride)
 
@@ -30,12 +30,21 @@
 - 工坊可升级速度、吸附范围和初始护盾，各有 3 级，费用为 60 / 140 / 260 鱼干。
 - 设置、余额、升级和个人纪录保存在当前浏览器的 localStorage。更换浏览器不会同步。
 
+## 造型与光影升级（v1.2）
+
+保留 Canvas 2D 海岛插画风，以分层曲面、材质渐变和定向高光增强立体感；不是 WebGL 3D 或光线追踪。自行车增加透明轮辐、轮胎与金属轮圈、管状车架、传动链条及同步脚踏。角色加入层叠羽毛、喙囊明暗、头盔通风口和织物/皮革细节。场景增加塔楼结构、岩层、树冠、远景空气透视、碎裂水面反光与随高度变化的接触投影；夜航使用冷色月光。
+
+轻量档保留主轮廓和材质，减少辐条、缝线、波纹与粒子。`tools/visual-qa.html` 可在项目根目录启动 HTTP 服务后打开，用固定时间/视角检查新旧造型与光照开关。15 秒采集区分浏览器帧间隔和 Canvas 同步提交耗时，不代表独立 GPU 耗时或真机性能。
+
 ## 文件
 
 - `dist/index.html`：页面、菜单、操作界面。
 - `dist/style.css`：响应式布局和视觉样式。
 - `dist/game.js`：游戏循环、物理、关卡、输入、音效与存档。
-- `dist/renderer.js`：画布绘制、动画、角色与场景。
+- `dist/renderer.js`：画布绘制、动画、可收集道具与效果。
+- `dist/cyclist-model.js`：鹈鹕与自行车的分层造型、材质和动作。
+- `dist/island-scenery.js`：海岛、植被、建筑和水面光影。
+- `dist/terrain-model.js`：道路、障碍物和地面投影。
 - `dist/routes.js`：路线参数、连续地形与路段节奏。
 - `dist/audio.js`：原创 16 小节配乐与音频生命周期。
 - `tests/`：游戏机制与音频生命周期回归检查。
